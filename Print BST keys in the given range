@@ -1,0 +1,38 @@
+public class Solution
+{
+
+    class TreeNode
+    {
+      int val;
+      TreeNode left;
+      TreeNode right;
+    
+    }
+    public void printRange(TreeNode root, int low, int high)
+    {
+      if(root == null)
+      {
+        return;
+      }
+      
+      if(root.val > high)
+      {
+        printRange(root.left, low, high);
+      }
+      
+      else if(root.val < low)
+      {
+        printRange(root.right, low, high);
+      
+      }
+      else
+      {
+          System.out.println(root.val);
+          printRange(root.left, low, high);
+          printRange(root.right, low, high);
+      }
+    
+    }
+
+
+}
