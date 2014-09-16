@@ -1,0 +1,33 @@
+public class LCA
+{
+  
+  public TreeNode getLCA(TreeNode n1, TreeNode n2, TreeNode root)
+  {
+      if(root == null || root == n1 || root == n2)
+      {
+        return root;
+      }
+      
+      TreeNode leftResult = getLCA(n1, n2, root.left);
+      TreeNode rightResult = getLCA(n1, n2, root.right);
+      
+      if(leftResult != null && rightResult != null)
+      {
+        return root;
+      }
+      
+      else if(leftResult == null)
+      {
+        return rightResult;
+        
+      }
+      else
+      {
+        return leftResult;
+      
+      }
+  
+  }
+
+
+}
