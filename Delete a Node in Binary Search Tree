@@ -1,0 +1,62 @@
+public class Solution
+{
+  class TreeNode
+  {
+    int val;
+    TreeNode left;
+    TreeNode right;
+  }
+  
+  public TreeNode deleteNode(TreeNode root, int target)
+  {
+      if(root == null)
+      {
+        return;
+      }
+      
+      if(root.val > target)
+      {
+          root.left = deleteNode(root.left, target);
+          return root;
+      }
+      else if(root.val < target)
+      {
+          root.right = deleteNode(root.right, target);
+          return root;
+      }
+      else
+      {
+          if(root.left == null)
+          {
+            return root.right;
+          }
+          else if(root.right == null)
+          {
+            return root.left;
+          }
+          else
+          {
+            TreeNode replace = getFloor(root);
+            root.val = replace.val;
+            root.right = deleteNode(root.right, replace.val);
+            return root;
+          }
+      
+      
+      }
+  }
+  
+  
+  private TreeNode getFloor(TreeNode root)
+  {
+      TreeNode ret = root;
+      while(ret.left != null)
+      {
+          ret = ret.left;
+      }
+      
+      return ret;
+  }
+
+
+}
